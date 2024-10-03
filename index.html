@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <!-- Definindo o conjunto de caracteres da página -->
+    <meta charset="UTF-8">
+    <!-- Configuração para a página ser responsiva -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestão de Estoque</title>
+    <!-- Ícone do site que aparece na aba do navegador -->
+    <link rel="shortcut icon" href="es.png" type="image/png">
+    <!-- Link para o arquivo de estilos CSS -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- Link para biblioteca de ícones FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+</head>
+<body>
+    <!-- Título principal da página -->
+    <h1>Gestão de Estoque</h1>
+
+    <!-- Contêiner de botões para ações principais -->
+    <div class="button-container">
+        <!-- Botão para abrir o formulário de cadastro/movimentação -->
+        <button id="btn-cadastrar">Cadastrar/Movimentar Produtos</button>
+        <!-- Botão para abrir a consulta de estoque -->
+        <button id="btn-consultar">Consultar Estoque</button>
+    </div>
+
+    <!-- Seção do formulário de cadastro de materiais -->
+    <div id="form-container" class="form-container hidden">
+        <h2>Cadastro de Materiais</h2>
+        <!-- Formulário para cadastrar materiais ou movimentar estoque -->
+        <form id="material-form">
+            <!-- Campo para data de movimentação -->
+            <label for="data-mov">Data Movimentação:</label>
+            <input type="date" id="data-mov" name="dataMov" required>
+
+            <!-- Campo para selecionar o tipo de movimentação: Entrada ou Retirada -->
+            <label for="movimentacao">Movimentação:</label>
+            <select id="movimentacao" name="movimentacao" required>
+                <option value="Entrada">Entrada</option>
+                <option value="Retirada">Retirada</option>
+            </select>
+
+            <!-- Campo para código do produto -->
+            <label for="codigo">Código ID:</label>
+            <input type="text" id="codigo" name="codigo" required>
+
+            <!-- Campo para nome do produto -->
+            <label for="produto">Produto:</label>
+            <input type="text" id="produto" name="produto" required>
+
+            <!-- Campo para quantidade de produto -->
+            <label for="quantidade">Quantidade:</label>
+            <input type="number" id="quantidade" name="quantidade" min="1" required>
+
+            <!-- Campo para unidade de medida do produto -->
+            <label for="unidade">Unidade de Medida:</label>
+            <input type="text" id="unidade" name="unidade" required>
+
+            <!-- Campo para valor unitário do produto -->
+            <label for="valor-unitario">Valor Unitário:</label>
+            <input type="number" id="valor-unitario" name="valorUnitario" min="0.01" step="0.01" required>
+
+            <!-- Campo para exibir o subtotal calculado -->
+            <label for="subtotal">Subtotal:</label>
+            <input type="text" id="subtotal" name="subtotal" readonly>
+
+            <!-- Botão para cadastrar ou movimentar o material -->
+            <button type="button" id="btn-add">Cadastrar/Movimentar</button>
+        </form>
+    </div>
+
+    <!-- Seção de consulta de estoque -->
+    <div id="consulta-container" class="consulta-container hidden">
+        <h2>Consulta de Estoque</h2>
+        <!-- Campo de pesquisa para filtrar os itens de estoque -->
+        <input type="text" id="search" placeholder="Pesquisar...">
+        
+        <!-- Tabela de itens no estoque -->
+        <table id="estoque-table">
+            <thead>
+                <tr>
+                    <th>Data Movimentação</th>
+                    <th>Movimentação</th>
+                    <th>Código ID</th>
+                    <th>Produto</th>
+                    <th>Quantidade</th>
+                    <th>Unidade</th>
+                    <th>Valor Unitário</th>
+                    <th>Subtotal</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody id="estoque-body"></tbody>
+        </table>
+
+        <!-- Exibição dos totais de entradas, retiradas e saldo final -->
+        <div>
+            <h3>Total Entradas: <span id="total-entrada">0</span></h3>
+            <h3>Total Retiradas: <span id="total-retirada">0</span></h3>
+            <h3>Saldo Total: <span id="saldo-total">0</span></h3>
+        </div>
+    </div>
+
+    <!-- Modal para edição de material -->
+    <div id="edit-modal" class="modal hidden">
+        <div class="modal-content">
+            <!-- Botão para fechar o modal -->
+            <span class="close">&times;</span>
+            <h2>Editar Material</h2>
+            <!-- Formulário para edição dos dados do material -->
+            <form id="edit-form">
+                <!-- Campo para editar a data de movimentação -->
+                <label for="edit-data-mov">Data Movimentação:</label>
+                <input type="date" id="edit-data-mov" required>
+
+                <!-- Campo para editar o tipo de movimentação -->
+                <label for="edit-movimentacao">Movimentação:</label>
+                <select id="edit-movimentacao" required>
+                    <option value="Entrada">Entrada</option>
+                    <option value="Retirada">Retirada</option>
+                </select>
+
+                <!-- Campo para editar o código do produto -->
+                <label for="edit-codigo">Código ID:</label>
+                <input type="text" id="edit-codigo" required>
+
+                <!-- Campo para editar o nome do produto -->
+                <label for="edit-produto">Produto:</label>
+                <input type="text" id="edit-produto" required>
+
+                <!-- Campo para editar a quantidade -->
+                <label for="edit-quantidade">Quantidade:</label>
+                <input type="number" id="edit-quantidade" min="1" required>
+
+                <!-- Campo para editar a unidade de medida -->
+                <label for="edit-unidade">Unidade de Medida:</label>
+                <input type="text" id="edit-unidade" required>
+
+                <!-- Campo para editar o valor unitário -->
+                <label for="edit-valor-unitario">Valor Unitário:</label>
+                <input type="number" id="edit-valor-unitario" min="0.01" step="0.01" required>
+
+                <!-- Campo para exibir o subtotal calculado -->
+                <label for="edit-subtotal">Subtotal:</label>
+                <input type="text" id="edit-subtotal" readonly>
+
+                <!-- Botão para salvar as alterações feitas -->
+                <button type="button" id="btn-save-edit">Salvar Alterações</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Rodapé com link para o repositório no GitHub -->
+    <footer>
+        <a href="https://github.com/jhonatasilva1902/Gestao-de-Estoque" target="_blank">
+            <i class="fa-brands fa-github"></i> Acesse o repositório e ajude a melhorar este projeto!
+        </a>
+    </footer>
+
+    <!-- Inclusão do script JS -->
+    <script src="script.js"></script>
+</body>
+</html>

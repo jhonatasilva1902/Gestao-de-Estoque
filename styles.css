@@ -1,0 +1,164 @@
+/* Estilo básico para o corpo da página */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5; /* Cor de fundo da página */
+    margin: 0;
+    padding: 20px; /* Espaçamento interno */
+}
+
+/* Estilo para o título principal */
+h1 {
+    text-align: center; /* Centraliza o texto */
+}
+
+/* Estilo para os subtítulos */
+h2 {
+    margin-bottom: 10px; /* Espaçamento abaixo dos subtítulos */
+}
+
+/* Estilos para os contêineres de formulário e de consulta */
+.form-container,
+.consulta-container {
+    background-color: #ffffff; /* Cor de fundo dos contêineres */
+    padding: 20px; /* Espaçamento interno */
+    border-radius: 10px; /* Bordas arredondadas */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Sombra leve */
+}
+
+/* Estilos para inputs, selects e botões */
+input, select, button {
+    display: block; /* Exibidos como blocos (um por linha) */
+    margin-bottom: 10px; /* Espaçamento abaixo dos elementos */
+    padding: 8px; /* Espaçamento interno */
+    width: 100%; /* Largura total do contêiner pai */
+    box-sizing: border-box; /* Inclui o padding na largura total */
+}
+
+/* Estilos para todos os botões */
+button {
+    cursor: pointer; /* Cursor de mão ao passar sobre o botão */
+    border: none; /* Remove borda padrão */
+    padding: 10px; /* Espaçamento interno */
+    color: white; /* Cor do texto dos botões */
+    font-size: 16px; /* Tamanho da fonte */
+}
+
+/* Botão de cadastrar produtos */
+#btn-cadastrar {
+    background-color: blue; /* Cor de fundo azul */
+}
+
+/* Botão de consultar estoque */
+#btn-consultar {
+    background-color: green; /* Cor de fundo verde */
+}
+
+/* Botões de adicionar e salvar no formulário */
+#btn-add,
+#btn-save-edit {
+    background-color: blue; /* Cor de fundo azul */
+}
+
+/* Botão para editar materiais */
+.btn-editar {
+    background-color: blue; /* Cor de fundo azul */
+}
+
+/* Botão para excluir materiais */
+.btn-excluir {
+    background-color: red; /* Cor de fundo vermelha */
+}
+
+/* Botão para retirar materiais */
+.btn-retirar {
+    background-color: orange; /* Cor de fundo laranja */
+}
+
+/* Estilo para tabelas */
+table {
+    width: 100%; /* Largura total do contêiner pai */
+    border-collapse: collapse; /* Remove os espaços entre as células */
+    margin-top: 20px; /* Espaçamento acima da tabela */
+}
+
+/* Bordas da tabela, cabeçalhos e células */
+table, th, td {
+    border: 1px solid black; /* Borda preta */
+}
+
+/* Espaçamento e alinhamento nas células da tabela */
+th, td {
+    padding: 10px; /* Espaçamento interno nas células */
+    text-align: left; /* Alinha o conteúdo à esquerda */
+}
+
+/* Estilo para o contêiner dos botões de ação */
+.button-container {
+    display: flex; /* Exibe os botões lado a lado */
+    justify-content: center; /* Centraliza os botões no contêiner */
+    gap: 10px; /* Espaço entre os botões */
+}
+
+/* Estilos do modal para edição */
+.modal {
+    display: flex; /* Flexbox para centralizar o modal */
+    justify-content: center; /* Centraliza o modal horizontalmente */
+    align-items: center; /* Centraliza o modal verticalmente */
+    position: fixed; /* Fixa o modal na tela */
+    top: 0;
+    left: 0;
+    width: 100%; /* Largura total da tela */
+    height: 100%; /* Altura total da tela */
+    background-color: rgba(0, 0, 0, 0.5); /* Fundo semitransparente */
+}
+
+/* Estilo do conteúdo do modal */
+.modal-content {
+    background-color: white; /* Cor de fundo branca */
+    padding: 20px; /* Espaçamento interno */
+    border-radius: 10px; /* Bordas arredondadas */
+    width: 400px; /* Largura fixa do modal */
+}
+
+/* Estilo do botão de fechar o modal */
+.close {
+    color: red; /* Cor vermelha para o 'X' de fechar */
+    float: right; /* Posiciona à direita */
+    font-size: 28px; /* Tamanho da fonte maior */
+}
+
+/* Estilos para o botão de fechar ao passar o mouse */
+.close:hover,
+.close:focus {
+    color: black; /* Cor preta ao passar o mouse ou focar */
+    cursor: pointer; /* Cursor de mão */
+}
+
+/* Classe para esconder elementos */
+.hidden {
+    display: none; /* Elemento escondido */
+}
+
+/* Estilo para garantir que o body ocupe toda a altura da tela */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Altura mínima de 100% da tela */
+}
+
+/* Estilo para o rodapé */
+footer {
+    margin-top: auto; /* Posiciona o rodapé no final da página */
+    text-align: center; /* Centraliza o texto no rodapé */
+    background-color: #f0f0f0; /* Cor de fundo opcional para o rodapé */
+}
+
+/* Estilo para os links no rodapé */
+footer a {
+    display: inline-block; /* Exibe o link como bloco em linha */
+    padding: 10px 20px; /* Espaçamento interno */
+    background-color: #fff; /* Fundo branco */
+    border-radius: 5px; /* Bordas arredondadas */
+    text-decoration: none; /* Remove o sublinhado */
+    color: #333; /* Cor do texto */
+}
